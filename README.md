@@ -1,2 +1,2 @@
 # speech-signal-processing
-Digital signal processing theory meets human speech
+Explorations in digital speech processing with Python and C++.
