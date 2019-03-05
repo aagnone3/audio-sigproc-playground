@@ -1,2 +1,2 @@
-# speech-signal-processing
-Explorations in digital speech processing with Python and C++.
+# audio-sigproc-playground 
+See it, hear it, believe it.
