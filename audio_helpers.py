@@ -1,5 +1,8 @@
 # high-level imports
+import os
 import time
+from os import path
+import scipy as sp
 import numpy as np
 from scipy.io.wavfile import read as wavread, write as wavwrite
 from matplotlib import pyplot as plt
@@ -8,8 +11,38 @@ import wave
 from scipy import signal
 from scipy.interpolate import interp1d
 from numpy.fft import fft, fftfreq
+import librosa
+from librosa.display import waveplot, specshow
 
 
+def plot_spec(signal, sr=16000, win_length=None, hop_length=None, return_spec=False):
+    if win_length is None:
+        win_length = int(sr * 0.025)
+        
+    if hop_length is None:
+        hop_length = int(sr * 0.010)
+        
+    Sxx = librosa.core.stft(
+        signal,
+        win_length=win_length,
+        hop_length=hop_length,
+        n_fft=4096
+    )
+
+    spec = librosa.amplitude_to_db(np.abs(Sxx), ref=np.max)
+    specshow(
+        spec,
+        sr=sr,
+        x_axis='time',
+        y_axis='hz',
+        cmap='gray_r'
+    )
+    plt.colorbar(format='%+2.0f dB')
+    
+    if return_spec:
+        return spec
+    
+    
 # Opens the file and plays it via an output audio stream.
 def play_audio(file_name):
     wf = wave.open(file_name, 'rb')
