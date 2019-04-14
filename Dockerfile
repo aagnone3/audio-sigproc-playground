@@ -23,4 +23,5 @@ RUN pip install \
     scikit-learn \
     matplotlib \
     librosa \
-    pyaudio
+    pyaudio \
+    aubio

@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 # high-level imports
 import os
 import time
@@ -51,7 +53,6 @@ def play_audio(file_name):
         data = wf.readframes(frame_count)
         return (data, pyaudio.paContinue)
     p = pyaudio.PyAudio()
-    print wf.getframerate()
     stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                     channels=wf.getnchannels(),
                     rate=wf.getframerate(),
