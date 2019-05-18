@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --fix-missing \
 # install numpy before anything to ensure the desired version is used
 RUN pip install --upgrade pip
 RUN pip install \
-    numpy==1.11 \
+    numpy \
+    scipy \
     jupyterlab \
     torch \
     torch-vision \
